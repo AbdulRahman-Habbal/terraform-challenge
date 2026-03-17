@@ -27,7 +27,7 @@ resource "aws_lb_listener" "web_listener" {
 
 # Internal ALB (Backend Tier - Bonus) [cite: 500]
 resource "aws_lb" "internal" {
-  name               = "internal-alb"
+  name               = "internalBonus-alb"
   internal           = true
   load_balancer_type = "application"
   security_groups    = [aws_security_group.internal_alb_sg.id]
