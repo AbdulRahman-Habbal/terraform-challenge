@@ -1,7 +1,7 @@
 # Bastion Host [cite: 496]
 resource "aws_instance" "bastion" {
   ami                         = var.ami_id
-  instance_type               = "t2.micro"
+  instance_type               = "t3.micro"
   subnet_id                   = aws_subnet.public[0].id
   vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
   key_name                    = var.key_name
@@ -13,7 +13,7 @@ resource "aws_instance" "bastion" {
 resource "aws_launch_template" "web" {
   name_prefix   = "web-lt-"
   image_id      = var.ami_id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   key_name      = var.key_name
   vpc_security_group_ids = [aws_security_group.web_sg.id]
   iam_instance_profile { name = aws_iam_instance_profile.ec2_profile.name }
@@ -39,7 +39,7 @@ resource "aws_autoscaling_group" "web_asg" {
 resource "aws_launch_template" "backend" {
   name_prefix   = "backend-lt-"
   image_id      = var.ami_id
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   key_name      = var.key_name
   vpc_security_group_ids = [aws_security_group.backend_sg.id]
   iam_instance_profile { name = aws_iam_instance_profile.ec2_profile.name }
