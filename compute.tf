@@ -19,7 +19,7 @@ resource "aws_launch_template" "web" {
   iam_instance_profile { name = aws_iam_instance_profile.ec2_profile.name }
   # User data with base64 encoding [cite: 556]
   user_data = base64encode(templatefile("userdata/web.sh", {
-    backend_dns = aws_lb.internal.dns_name # Passing Internal ALB DNS to Nginx
+    backend_dns = aws_lb.internalBonus_alb.dns_name # Passing Internal ALB DNS to Nginx
   }))
 }
 
