@@ -29,7 +29,10 @@ resource "aws_autoscaling_group" "web_asg" {
   min_size            = 1
   max_size            = 4
   desired_capacity    = 2
-  launch_template { id = aws_launch_template.web.id; version = "$Latest" }
+  launch_template {
+  id      = aws_launch_template.web.id
+  version = "$Latest"
+}
 }
 
 # Backend Tier ASG [cite: 496]
@@ -49,5 +52,8 @@ resource "aws_autoscaling_group" "backend_asg" {
   min_size            = 1
   max_size            = 3
   desired_capacity    = 2
-  launch_template { id = aws_launch_template.backend.id; version = "$Latest" }
+  launch_template {
+  id      = aws_launch_template.backend.id
+  version = "$Latest"
+}
 }
